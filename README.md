@@ -7,7 +7,7 @@
 
 # Avance 1
 ### Introducción
-- Nosotros elegimos la alternativa 2 que consiste en hacer una aplicacion que emule un ahorcado utilizando python
+- Nosotros elegimos la alternativa 2 que consiste en hacer una aplicacion que emule un ahorcado utilizando python y funcione completamente en la misma consola
 ### ¿Qué es un ahorcado?
 - El juego del ahorcado es un juego de adivinanza en el que los jugadores deben adivinar una palabra o frase oculta proponiendo letras por turnos. Por cada letra correcta, se escribe en el lugar correspondiente, mientras que por cada letra incorrecta, se dibuja una parte del cuerpo de un muñeco que será ahorcado si no se resuelve el enigma a tiempo.
 
@@ -70,13 +70,13 @@ flowchart TD
     J -->|Sí| K[Actualizar palabra_mostrar con letra]
     K --> L[letra_correcta = True]
     L --> M[Mensaje: ¡Bien!]
-    M --> N
+    M --> Q
 
     J -->|No| O[Mensaje: No está]
     O --> P[Restar 1 intento]
-    P --> N
+    P --> Q
 
-    N --> Q{¿Palabra completada?}
+    Q{¿Palabra completada?}
     Q -->|Sí| R[palabra_adivinada = True]
     Q -->|No| F
 
@@ -84,8 +84,76 @@ flowchart TD
     S -->|Sí| T[¡Felicidades! Mostrar palabra]
     S -->|No| U[Lo siento. Mostrar palabra correcta]
 
-    T --> V[Fin]
+    T --> W[palabra_adivinada=True]
     U --> V[Fin]
+    W --> V[Fin]
 
 
 ```
+
+# Lista de pasos
+
+
+1. Inicio del juego
+
+2. Definir la palabra secreta.  ejemplo: "gato"
+
+3. Crear la lista palabra_mostrar con n(numero de letras) espacios vacíos (["", "", "", ""])
+
+4. Inicializar el número de intentos: intentos = 6
+
+5. Inicializar el estado del juego: palabra_adivinada = False
+
+6. Verificar condición del juego:  ¿intentos > 0 y palabra_adivinada == False?
+
+### Mientras la condición sea verdadera:
+
+7. Mostrar la palabra actual (letras adivinadas y guiones)
+
+8. Mostrar los intentos restantes
+
+9. Pedir al jugador que ingrese una letra
+
+10. Inicializar letra_correcta = False
+
+11. Comprobar si la letra ingresada está en la palabra secreta
+
+### Evaluar letra:
+
+12. Actualizar la lista palabra_mostrar con la letra correcta
+
+13. Asignar letra_correcta = True
+
+14. Mostrar mensaje positivo: "¡Bien!"
+
+15. Verificar si la palabra está completamente adivinada
+
+### La letra no esta en la palabra:
+ 
+16. Mostrar mensaje negativo: "No está"
+
+17. Restar 1 intento
+
+18. Verificar si la palabra está completamente adivinada
+
+### Palabra completa
+
+19. Asignar palabra_adivinada = True
+
+20. Volver a comprobar la condición principal del juego
+
+### 0 Intentos
+
+21. Evaluar: ¿palabra_adivinada == True?
+
+### Condicion final
+
+### Condicion verdadera
+
+22. Si: mostrar mensaje de éxito: "¡Felicidades!  Asignar palabra_adivinada = True
+
+### Condicion Falso
+
+23. No: mostrar mensaje de derrota con la palabra correcta
+
+24. Fin del juego
